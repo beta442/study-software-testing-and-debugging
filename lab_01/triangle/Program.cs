@@ -20,6 +20,11 @@ ITriangleTypeCheckStrategy[] triangleTypeCheckStrategies = new ITriangleTypeChec
     new IsIsoscelesTriangle()
 };
 
+void WriteTriangleType(ITriangleTypeCheckStrategy.TriangleType type)
+{
+    Console.WriteLine(type.ToString());
+}
+
 try
 {
     if (args.Length >= 3)
@@ -30,18 +35,17 @@ try
         double b = triangleSides[1];
         double c = triangleSides[2];
 
-        string triangleType = "";
+        ITriangleTypeCheckStrategy.TriangleType result = ITriangleTypeCheckStrategy.TriangleType.NotTriangle;
         foreach (var strategy in triangleTypeCheckStrategies)
         {
-            bool result = strategy.Check(a, b, c);
-            triangleType = strategy.TriangleType();
-            if (!result && strategy.GetType() == typeof(IsTriangle) // not triangle
-                || result && strategy.GetType() != typeof(IsTriangle)) // found type
+            result = strategy.Check(a, b, c);
+            if (result == ITriangleTypeCheckStrategy.TriangleType.NotTriangle || result != ITriangleTypeCheckStrategy.TriangleType.Triangle)
             {
                 break;
             }
         }
-        Console.WriteLine(triangleType);
+
+        WriteTriangleType(result);
 
         return 0;
     }

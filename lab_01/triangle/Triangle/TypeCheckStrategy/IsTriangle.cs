@@ -4,20 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy;
+
 namespace triangle.Triangle.TypeCheckStrategy
 {
     internal class IsTriangle : ITriangleTypeCheckStrategy
     {
-        public virtual bool Check(double a, double b, double c)
+        public virtual TriangleType Check(double a, double b, double c)
         {
-            bool result = IsValidTriangle(a, b, c);
-            _triangleType = result ? "Triangle" : "NotTriangle";
-
-            return result;
-        }
-        public string TriangleType()
-        {
-            return _triangleType;
+            return IsValidTriangle(a, b, c) ? TriangleType.Triangle : TriangleType.NotTriangle;
         }
 
         protected static bool IsValidTriangle(double a, double b, double c)
@@ -29,7 +24,5 @@ namespace triangle.Triangle.TypeCheckStrategy
 
             return false;
         }
-
-        protected string _triangleType = "NotTriangle";
     }
 }

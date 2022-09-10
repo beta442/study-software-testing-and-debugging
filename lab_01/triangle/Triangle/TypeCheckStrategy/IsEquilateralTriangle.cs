@@ -5,19 +5,25 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
+using static triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy;
+
 namespace triangle.Triangle.TypeCheckStrategy
 {
     internal class IsEquilateralTriangle : IsTriangle
     {
-        public override bool Check(double a, double b, double c)
+        public override TriangleType Check(double a, double b, double c)
         {
-            bool result = base.Check(a, b, c) && (a == b && a == c);
-            if (result)
+            if (!IsValidTriangle(a, b, c))
             {
-                _triangleType = "Equilateral";
+                return TriangleType.NotTriangle;
+            }
+            
+            if (a == b && a == c)
+            {
+                return TriangleType.Equilateral;
             }
 
-            return result;
+            return TriangleType.Triangle;
         }
     }
 }

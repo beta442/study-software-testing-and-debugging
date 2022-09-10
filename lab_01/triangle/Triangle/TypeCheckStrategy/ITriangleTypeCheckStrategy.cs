@@ -8,7 +8,13 @@ namespace triangle.Triangle.TypeCheckStrategy
 {
     internal interface ITriangleTypeCheckStrategy
     {
-        public abstract bool Check(double a, double b, double c);
-        public string TriangleType();
+        public enum TriangleType
+        {
+            NotTriangle = 0,
+            Triangle,
+            Equilateral,
+            Isosceles,
+        }
+        public abstract TriangleType Check(double a, double b, double c);
     }
 }
