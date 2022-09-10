@@ -1,4 +1,5 @@
 ﻿using triangle.Triangle.TypeCheckStrategy;
+
 using TriangleType = triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy.TriangleType;
 
 const string unhandledExceptionMsg = "UnhandledException";

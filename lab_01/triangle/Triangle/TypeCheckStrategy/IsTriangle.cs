@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using static triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy;
+﻿using static triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy;
 
 namespace triangle.Triangle.TypeCheckStrategy
 {
