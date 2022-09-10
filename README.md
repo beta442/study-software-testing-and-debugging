@@ -1,1 +1,1 @@
-# study-software-testing-and-debugging
+# Software testing and debugging course
