@@ -1,20 +1,9 @@
 ﻿using triangle.Triangle.TypeCheckStrategy;
+using util;
 
 using TriangleType = triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy.TriangleType;
 
 const string unhandledExceptionMsg = "UnhandledException";
-
-static double[] ConvertToDoubleStringArr(string[] arr)
-{
-    try
-    {
-        return arr.Select(double.Parse).ToArray();
-    }
-    catch (Exception)
-    {
-        throw new ArgumentException(unhandledExceptionMsg);
-    }
-}
 
 ITriangleTypeCheckStrategy[] triangleTypeCheckStrategies = new ITriangleTypeCheckStrategy[] {
     new IsTriangle(),
@@ -31,7 +20,7 @@ try
 {
     if (args.Length >= 3)
     {
-        double[] triangleSides = ConvertToDoubleStringArr(new ArraySegment<string>(args, 0, 3).ToArray());
+        double[] triangleSides = ConvertDouble.ConvertToDoubleStringArr(new ArraySegment<string>(args, 0, 3).ToArray());
 
         double a = triangleSides[0];
         double b = triangleSides[1];
