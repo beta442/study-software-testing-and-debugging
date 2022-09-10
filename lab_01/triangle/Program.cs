@@ -1,6 +1,7 @@
 ﻿using triangle.Triangle.TypeCheckStrategy;
+using TriangleType = triangle.Triangle.TypeCheckStrategy.ITriangleTypeCheckStrategy.TriangleType;
 
-const String unhandledExceptionMsg = "UnhandledException";
+const string unhandledExceptionMsg = "UnhandledException";
 
 static double[] ConvertToDoubleStringArr(string[] arr)
 {
@@ -20,7 +21,7 @@ ITriangleTypeCheckStrategy[] triangleTypeCheckStrategies = new ITriangleTypeChec
     new IsIsoscelesTriangle()
 };
 
-void WriteTriangleType(ITriangleTypeCheckStrategy.TriangleType type)
+static void WriteTriangleType(TriangleType type)
 {
     Console.WriteLine(type.ToString());
 }
@@ -35,11 +36,12 @@ try
         double b = triangleSides[1];
         double c = triangleSides[2];
 
-        ITriangleTypeCheckStrategy.TriangleType result = ITriangleTypeCheckStrategy.TriangleType.NotTriangle;
+        var result = TriangleType.NotTriangle;
         foreach (var strategy in triangleTypeCheckStrategies)
         {
             result = strategy.Check(a, b, c);
-            if (result == ITriangleTypeCheckStrategy.TriangleType.NotTriangle || result != ITriangleTypeCheckStrategy.TriangleType.Triangle)
+            if (result == TriangleType.NotTriangle ||
+                result != TriangleType.Triangle)
             {
                 break;
             }
