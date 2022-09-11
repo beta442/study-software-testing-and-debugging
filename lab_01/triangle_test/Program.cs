@@ -1,92 +1,76 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.Diagnostics;
 
 using util;
 
-namespace triangle_test
+string userInput = args.Length > 0 ? args[0] : "";
+string[] expectedTriangleTypes = { "NotTriangle", "Triangle", "Equilateral", "Isosceles" };
+const string triangleTypeCheckAppName = "triangle.exe";
+
+void ReadFilePath()
 {
-    internal class Program
+    while (userInput == "")
     {
-        static void Main(string[] args)
+        Console.WriteLine("Type file path:");
+        var input = Console.ReadLine();
+        userInput = input ?? "";
+    }
+}
+
+while (true)
+{
+    try
+    {
+        ReadFilePath();
+        StreamReader sr = new(userInput);
+        string? line = "";
+        int lineConunter = 1;
+        while ((line = sr.ReadLine()) != null)
         {
-            string userInput = args.Length > 0 ? args[0] : "";
-            string[] expectedTriangleTypes = { "NotTriangle", "Triangle", "Equilateral", "Isosceles" };
-            const string triangleTypeCheckAppName = "triangle.exe";
-
-            void ReadFilePath()
+            if (line.Length == 0)
             {
-                while (userInput == "")
+                continue;
+            }
+            string[] arguments = line.Split(' ');
+            double[] triangleSides = Array.Empty<double>();
+            try
+            {
+                triangleSides = ConvertDouble.ConvertToDoubleStringArr(new ArraySegment<string>(arguments, 0, 3).ToArray());
+                if (!expectedTriangleTypes.Contains(arguments[3]))
                 {
-                    Console.WriteLine("Type file path:");
-                    var input = Console.ReadLine();
-                    userInput = input ?? "";
+                    throw new ArgumentException("Invalid triangle's type at 4 position");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Wrong argument at line {lineConunter}. -> {ex.Message}");
+            }
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = triangleTypeCheckAppName,
+                Arguments = string.Join(" ", triangleSides),
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            };
+
+            var proc = Process.Start(startInfo);
+            if (proc != null)
+            {
+                while (!proc.StandardOutput.EndOfStream)
+                {
+                    Console.WriteLine(proc.StandardOutput.ReadLine());
                 }
             }
 
-            while (true)
-            {
-                try
-                {
-                    ReadFilePath();
-                    using (StreamReader sr = new StreamReader(userInput))
-                    {
-                        string line = "";
-                        int lineConunter = 1;
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            if (line.Length == 0)
-                            {
-                                continue;
-                            }
-                            string[] arguments = line.Split(' ');
-                            try
-                            {
-                                ConvertDouble.ConvertToDoubleStringArr(new ArraySegment<string>(arguments, 0, 3).ToArray());
-                                if (!expectedTriangleTypes.Contains(arguments[3]))
-                                {
-                                    throw new ArgumentException("Invalid triangle's type at 4 position");
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Wrong argument at line {lineConunter}. -> {ex.Message}");
-                            }
-
-                            var startInfo = new ProcessStartInfo
-                            {
-                                FileName = "triangle.exe",
-                                Arguments = "1 2 3",
-                                UseShellExecute = true,
-                                RedirectStandardOutput = false,
-                                CreateNoWindow = true
-                            };
-
-                            using (var proc = Process.Start(startInfo))
-                            {
-                                Console.WriteLine(1);
-                                while (!proc.StandardOutput.EndOfStream)
-                                {
-                                    string procLine = proc.StandardOutput.ReadLine();
-                                    
-                                }
-                            }
-
-                            ++lineConunter;
-                        }
-
-                        Console.WriteLine(line);
-                    }
-
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    userInput = "";
-                }
-            }
+            ++lineConunter;
         }
+
+        return;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+        userInput = "";
     }
 }
