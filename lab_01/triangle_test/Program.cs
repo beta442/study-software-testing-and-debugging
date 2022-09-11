@@ -30,6 +30,7 @@ while (true)
         {
             if (line.Length == 0)
             {
+                sw.WriteLine();
                 continue;
             }
             string[] arguments = line.Split(' ');
