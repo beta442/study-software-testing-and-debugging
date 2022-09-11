@@ -5,6 +5,7 @@ using util;
 string userInput = args.Length > 0 ? args[0] : "";
 string[] expectedTriangleTypes = { "NotTriangle", "Triangle", "Equilateral", "Isosceles" };
 const string triangleTypeCheckAppName = "triangle.exe";
+const string outputResultFileName = "result.txt";
 
 void ReadFilePath()
 {
@@ -21,7 +22,8 @@ while (true)
     try
     {
         ReadFilePath();
-        StreamReader sr = new(userInput);
+        using StreamReader sr = new(userInput);
+        using StreamWriter sw = new(outputResultFileName);
         string? line = "";
         int lineConunter = 1;
         while ((line = sr.ReadLine()) != null)
@@ -54,12 +56,16 @@ while (true)
                 CreateNoWindow = true
             };
 
-            var proc = Process.Start(startInfo);
+            using Process? proc = Process.Start(startInfo);
             if (proc != null)
             {
                 while (!proc.StandardOutput.EndOfStream)
                 {
-                    Console.WriteLine(proc.StandardOutput.ReadLine());
+                    string? result = proc.StandardOutput.ReadLine();
+
+                    string outputRes = (arguments[3] == result) ? "success" : "error";
+
+                    sw.WriteLine(outputRes);
                 }
             }
 

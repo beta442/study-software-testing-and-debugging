@@ -1,0 +1,3 @@
+2 4 5 Triangle
+3 3 3 Equilateral
+2 4 5 Isosceles
