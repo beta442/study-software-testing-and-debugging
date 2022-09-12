@@ -25,9 +25,11 @@ while (true)
         using StreamReader sr = new(userInput);
         using StreamWriter sw = new(outputResultFileName);
         string? line = "";
-        int lineConunter = 1;
+        int lineConunter = 0;
         while ((line = sr.ReadLine()) != null)
         {
+            ++lineConunter;
+
             if (line.Length == 0)
             {
                 sw.WriteLine();
@@ -69,8 +71,6 @@ while (true)
                     sw.WriteLine(outputRes);
                 }
             }
-
-            ++lineConunter;
         }
 
         return;
