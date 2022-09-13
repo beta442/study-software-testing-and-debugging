@@ -46,7 +46,7 @@ try
         throw new ArgumentException(unhandledExceptionMsg);
     }
 }
-catch (Exception ex)
+catch (Exception)
 {
     Console.WriteLine(unhandledExceptionMsg);
     return 1;

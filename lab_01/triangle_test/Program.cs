@@ -59,7 +59,7 @@ while (true)
             };
 
             using Process? proc = Process.Start(startInfo);
-												if (proc != null)
+			if (proc != null)
             {
                 while (!proc.StandardOutput.EndOfStream)
                 {
