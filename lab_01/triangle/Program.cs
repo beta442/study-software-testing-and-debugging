@@ -48,6 +48,6 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine(ex.Message);
+    Console.WriteLine(unhandledExceptionMsg);
     return 1;
 }

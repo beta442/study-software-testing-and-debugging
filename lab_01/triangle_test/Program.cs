@@ -29,7 +29,6 @@ while (true)
         while ((line = sr.ReadLine()) != null)
         {
             ++lineConunter;
-
             if (line.Length == 0)
             {
                 sw.WriteLine();
@@ -60,13 +59,13 @@ while (true)
             };
 
             using Process? proc = Process.Start(startInfo);
-            if (proc != null)
+												if (proc != null)
             {
                 while (!proc.StandardOutput.EndOfStream)
                 {
                     string? result = proc.StandardOutput.ReadLine();
 
-                    string outputRes = (arguments[3] == result) ? "success" : "error";
+                    string outputRes = (arguments.Last() == result) ? "success" : "error";
 
                     sw.WriteLine(outputRes);
                 }
