@@ -1,0 +1,15 @@
+1 2 3 Triangle
+0 2 4 Triangle
+
+Triangle
+1 Triangle
+1 2 Triangle
+a Triangle
+a b Triangle
+a b c Triangle
+a 1 2 Triangle
+0,20,40,5 Triangle
+
+2 4 5 Trrrrrr
+0.2 0.4 0.5 Triangle
+ 
