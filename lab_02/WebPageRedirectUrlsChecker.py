@@ -69,7 +69,7 @@ class WebPageRedirectUrlsChecker:
 						links_to_validate.add(link_url)
 
 						if self._is_logging():
-							print(f'On page 'f'{page}''. Found link 'f'{link_url}'' ', file=self._log_file)
+							print(f"On page '{page}'. Found link '{link_url}'.", file=self._log_file)
 
 			except Exception:
 				raise ConnectionError('Can''t scan page:' + page)
@@ -81,7 +81,7 @@ class WebPageRedirectUrlsChecker:
 					(url, is_valid_link, status) = req_future.result()
 
 					if self._is_logging():
-						print(f'Url 'f'{url}'' is ' + ('reachable' if is_valid_link else 'unreachable') +
+						print(f"Url '{url}' is " + ('reachable' if is_valid_link else 'unreachable') +
 						      f'. Code is {status}',
 						      file=self._log_file)
 

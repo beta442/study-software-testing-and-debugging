@@ -31,21 +31,25 @@ def main() -> None:
 	datetime_string = start_time.strftime(_DATE_TIME_FORMAT)
 	script_path = os.path.dirname(os.path.abspath(__file__))
 
-	(valid_links_file, invalid_links_file) = get_output_files_handlers(
-		[FileHandlerNameParams(script_path, _VALID_LINKS_FILE_NAME, datetime_string, '.txt'),
-		 FileHandlerNameParams(script_path, _INVALID_LINKS_FILE_NAME, datetime_string, '.txt')])
-
 	urls_checker = WebPageRedirectUrlsChecker.WebPageRedirectUrlsChecker(args.URL, log=args.v)
 	urls_checker.scan()
 
 	ok_links = urls_checker.get_ok_urls()
 	bad_links = urls_checker.get_bad_urls()
 
+	(valid_links_file, invalid_links_file) = get_output_files_handlers(
+		[FileHandlerNameParams(script_path, _VALID_LINKS_FILE_NAME, datetime_string, '.txt'),
+		 FileHandlerNameParams(script_path, _INVALID_LINKS_FILE_NAME, datetime_string, '.txt')])
+
 	for item in ok_links:
 		valid_links_file.write(f'{item[0]} {item[1]}\n')
 
+	valid_links_file.write(f'\n{datetime_string}\nLinks amount: {len(ok_links)}\n');
+
 	for item in bad_links:
 		invalid_links_file.write(f'{item[0]} {item[1]}\n')
+
+	invalid_links_file.write(f'\n{datetime_string}\nLinks amount: {len(bad_links)}\n');
 
 	valid_links_file.close()
 	invalid_links_file.close()
