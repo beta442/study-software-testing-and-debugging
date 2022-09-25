@@ -56,6 +56,6 @@ if __name__ == "__main__":
 		main()
 	except KeyboardInterrupt:
 		print("\nUser interrupt", file=sys.stderr)
-# except Exception:
-# 	print("Unhandled exception occured")
-# 	sys.exit(1)
+	except Exception:
+		print("Unhandled exception occured")
+		sys.exit(1)
