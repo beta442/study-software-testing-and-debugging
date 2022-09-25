@@ -1,6 +1,5 @@
 import argparse
 import datetime
-import requests
 import sys
 
 import WebPageRedirectUrlsChecker
@@ -23,6 +22,15 @@ def init_args_parser() -> argparse.ArgumentParser:
 	return parser
 
 
+def print_links(links_with_status: set[tuple[str, int]], file: typing.IO):
+	for item in links_with_status:
+		link = item[0]
+		status = item[1]
+		file.write(f'{link} {status}\n')
+
+	file.write(f'\nLinks amount: {len(links_with_status)}\n');
+
+
 def main() -> None:
 	parser = init_args_parser()
 	args = parser.parse_args()
@@ -41,15 +49,11 @@ def main() -> None:
 		[FileHandlerNameParams(script_path, _VALID_LINKS_FILE_NAME, datetime_string, '.txt'),
 		 FileHandlerNameParams(script_path, _INVALID_LINKS_FILE_NAME, datetime_string, '.txt')])
 
-	for item in ok_links:
-		valid_links_file.write(f'{item[0]} {item[1]}\n')
+	print_links(ok_links, valid_links_file)
+	valid_links_file.write(f"{datetime_string}\n")
 
-	valid_links_file.write(f'\n{datetime_string}\nLinks amount: {len(ok_links)}\n');
-
-	for item in bad_links:
-		invalid_links_file.write(f'{item[0]} {item[1]}\n')
-
-	invalid_links_file.write(f'\n{datetime_string}\nLinks amount: {len(bad_links)}\n');
+	print_links(bad_links, invalid_links_file)
+	invalid_links_file.write(f"{datetime_string}\n")
 
 	valid_links_file.close()
 	invalid_links_file.close()
