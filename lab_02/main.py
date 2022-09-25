@@ -14,7 +14,7 @@ _VALID_LINKS_FILE_NAME = 'valid-links'
 
 
 def init_args_parser() -> argparse.ArgumentParser:
-	parser = argparse.ArgumentParser(usage="Provide website's url and specify output detsinations",
+	parser = argparse.ArgumentParser(usage="Provide website's url and wait",
 	                                 description="Script finds live and dead links on specified site")
 
 	parser.add_argument("URL", help="URL of site that will be check")
