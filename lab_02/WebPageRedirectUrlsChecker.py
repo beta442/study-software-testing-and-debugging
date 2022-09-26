@@ -64,8 +64,8 @@ class WebPageRedirectUrlsChecker:
 					link_url = link.get_attribute('href')
 
 					if (link_url and
-							link_url not in scanned_pages):
-						scanned_pages.add(link_url)
+							link_url not in scanned_pages and
+							link_url not in links_to_validate):
 						links_to_validate.add(link_url)
 
 						if self._is_logging():
@@ -96,6 +96,8 @@ class WebPageRedirectUrlsChecker:
 							page_queue.put(url)
 					else:
 						self._bad_urls.add((url, status))
+
+					scanned_pages.add(url)
 
 	def get_ok_urls(self) -> set[tuple[str, int]]:
 		return self._ok_urls
