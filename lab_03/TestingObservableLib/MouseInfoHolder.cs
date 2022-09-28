@@ -13,7 +13,6 @@
         private Tuple<MouseScreenPosition, MouseScreenPosition> _screenPos = new(MouseScreenPosition.LEFT, MouseScreenPosition.TOP);
         private readonly List<ClickEventType> _mouseClicksHistory = new();
         private bool _keepCollectingInfo = true;
-        private bool _
         public bool KeepCollectingInfo
         {
             get => _keepCollectingInfo;
