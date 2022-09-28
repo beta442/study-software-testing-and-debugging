@@ -6,13 +6,14 @@
         RIGHT,
         TOP,
         DOWN,
-    }
+    } 
 
     public class MouseInfoHolder
     {
         private Tuple<MouseScreenPosition, MouseScreenPosition> _screenPos = new(MouseScreenPosition.LEFT, MouseScreenPosition.TOP);
         private readonly List<ClickEventType> _mouseClicksHistory = new();
         private bool _keepCollectingInfo = true;
+        private bool _
         public bool KeepCollectingInfo
         {
             get => _keepCollectingInfo;
@@ -31,6 +32,13 @@
 
             EventHolder<MouseStatusInfo>.AddListener(OnMouseAliveStatusChange, true);
             KeepCollectingInfo = true;
+        }
+
+        ~MouseInfoHolder()
+        {
+            EventHolder<MouseStatusInfo>.RemoveListener(OnMouseAliveStatusChange);
+            EventHolder<MousePosInfo>.RemoveListener(OnMousePosChange);
+            EventHolder<ClickEventInfo>.RemoveListener(OnMouseClick);
         }
 
         public void SetTrackingStatus(bool keepTracking)

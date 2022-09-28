@@ -77,5 +77,8 @@ namespace ObserverTest
 
             Assert.Empty(holder.GetClickHistory());
         }
+
+        [Fact]
+        public void Setting_mouse_pos
     }
 }
