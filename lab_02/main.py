@@ -35,15 +35,15 @@ def main() -> None:
 	parser = init_args_parser()
 	args = parser.parse_args()
 
-	start_time = datetime.datetime.now()
-	datetime_string = start_time.strftime(_DATE_TIME_FORMAT)
-	script_path = os.path.dirname(os.path.abspath(__file__))
-
 	urls_checker = WebPageRedirectUrlsChecker.WebPageRedirectUrlsChecker(args.URL, log=args.v)
 	urls_checker.scan()
 
 	ok_links = urls_checker.get_ok_urls()
 	bad_links = urls_checker.get_bad_urls()
+
+	start_time = datetime.datetime.now()
+	datetime_string = start_time.strftime(_DATE_TIME_FORMAT)
+	script_path = os.path.dirname(os.path.abspath(__file__))
 
 	(valid_links_file, invalid_links_file) = get_output_files_handlers(
 		[FileHandlerNameParams(script_path, _VALID_LINKS_FILE_NAME, datetime_string, '.txt'),

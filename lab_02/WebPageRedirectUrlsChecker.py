@@ -57,15 +57,22 @@ class WebPageRedirectUrlsChecker:
 
 			links_to_validate = set()
 			try:
+				if (page[-1:] == '#' and
+						page[:-1] in scanned_pages):
+					continue
 				self._google_driver.get(page)
 				link_list = self._google_driver.find_elements(by=By.TAG_NAME, value='a')
 
 				for link in link_list:
 					link_url = link.get_attribute('href')
 
+					parsed_uri = urlparse(link_url)
+					host_name = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+
 					if (link_url and
 							link_url not in scanned_pages and
-							link_url not in links_to_validate):
+							link_url not in links_to_validate and
+							host_name == self._hostname):
 						links_to_validate.add(link_url)
 
 						if self._is_logging():
@@ -86,14 +93,9 @@ class WebPageRedirectUrlsChecker:
 						      file=self._log_file)
 
 					if is_valid_link:
-						self._ok_urls.add((url, status))
-
-						parsed_uri = urlparse(url)
-						host_name = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-
-						if (host_name == self._hostname and
-								url not in scanned_pages):
+						if url not in scanned_pages:
 							page_queue.put(url)
+							self._ok_urls.add((url, status))
 					else:
 						self._bad_urls.add((url, status))
 
