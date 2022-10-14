@@ -77,7 +77,14 @@ namespace TestingBoardLib.Board.TaskColumn
 
         public void Rename(string name)
         {
-            _name = name;
+            if (name.Length == 0)
+            {
+                _name = DEFAULT_NAME;
+            }
+            else
+            {
+                _name = name;
+            }
         }
 
         public bool HasColumnPrioritedTasks(int taskPriority)

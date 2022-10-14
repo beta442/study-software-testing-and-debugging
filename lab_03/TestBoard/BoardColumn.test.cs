@@ -1,5 +1,4 @@
 using Moq;
-using System.Threading.Tasks;
 using TestingBoardLib.Board.Task;
 using TestingBoardLib.Board.TaskColumn;
 
@@ -19,7 +18,9 @@ namespace TestBoard
         {
             const string expectedName = "Column";
 
-            Assert.Equal(expectedName, _tC.GetName());
+            string actualName = _tC.GetName();
+
+            Assert.Equal(expectedName, actualName);
         }
 
         [Fact]
@@ -28,7 +29,9 @@ namespace TestBoard
             const string expectedName = "Column";
             TaskColumn tC = new("");
 
-            Assert.Equal(expectedName, tC.GetName());
+            string actualName = tC.GetName();
+
+            Assert.Equal(expectedName, actualName);
         }
 
         [Fact]
@@ -37,14 +40,20 @@ namespace TestBoard
             const string expectedName = "Name";
             TaskColumn tC = new(expectedName);
 
-            Assert.Equal(expectedName, tC.GetName());
+            string actualName = tC.GetName();
+
+            Assert.Equal(expectedName, actualName);
         }
 
         [Fact]
         public void New_taskColumn_doesnt_contain_any_tasks()
         {
+            const int expectedTaskCount = 0;
+
+            int actualTaskCount = _tC.GetTaskCount();
+
+            Assert.Equal(expectedTaskCount, actualTaskCount);
             Assert.Empty(_tC.GetPrioritedTaskMap());
-            Assert.Equal(0, _tC.GetTaskCount());
         }
 
         [Fact]
@@ -54,7 +63,18 @@ namespace TestBoard
 
             _tC.Rename(newName);
 
-            Assert.Equal(_tC.GetName(), newName);
+            Assert.Equal(newName, _tC.GetName());
+        }
+
+        [Fact]
+        public void Renaming_taskColumn_with_empty_name()
+        {
+            const string newName = "";
+            const string expectedName = "Column";
+
+            _tC.Rename(newName);
+
+            Assert.Equal(expectedName, _tC.GetName());
         }
 
         [Fact]
@@ -161,6 +181,7 @@ namespace TestBoard
         public void Getting_taskCount_when_column_contains_empty_prioritedTaskList()
         {
             const int expectedResult = 0;
+
             for (int i = 0; i < 10; i++)
             {
                 _tC.AddPrioritedTaskList(i);
