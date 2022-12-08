@@ -1,10 +1,17 @@
-Font: Adobe Devanagari, Arial, Arial Black, Arial Narrow, Bahnschrift, Bahnschrift Condensed, Bahnschrift Light, Bahnschrift Light Condensed, Bahnschrift Light SemiCondensed, Bahnschrift SemiBold, Bahnschrift SemiBold Condensed, Bahnschrift SemiBold SemiConden, Bahnschrift SemiCondensed, Bahnschrift SemiLight, Bahnschrift SemiLight Condensed, Bahnschrift SemiLight SemiConde, Book Antiqua, Bookman Old Style, Bookshelf Symbol 7, Calibri, Calibri Light, Cambria, Cambria Math, Candara, Candara Light, Cascadia Code, Cascadia Code ExtraLight, Cascadia Code Light, Cascadia Code SemiBold, Cascadia Code SemiLight, Cascadia Mono, Cascadia Mono ExtraLight, Cascadia Mono Light, Cascadia Mono SemiBold, Cascadia Mono SemiLight, Century, Century Gothic, Comic Sans MS, Consolas, Constantia, Corbel, Corbel Light, Courier New, DatCub, DatCub Light, Double•Bubble Shadow, Dubai, Dubai Light, Dubai Medium, Ebrima, Franklin Gothic Medium, ft40, Gabriola, Gadugi, Garamond, Georgia, Impact, Ink Free, Javanese Text, Lato, Lato Light, Lato Semibold, Leelawadee, Leelawadee UI, Leelawadee UI Semilight, Lucida Console, Lucida Sans Unicode, Malgun Gothic, Marlett, Microsoft Himalaya, Microsoft JhengHei, Microsoft JhengHei UI, Microsoft New Tai Lue, Microsoft PhagsPa, Microsoft Sans Serif, Microsoft Tai Le, Microsoft Uighur, Microsoft YaHei, Microsoft YaHei UI, Microsoft Yi Baiti, Mongolian Baiti, Monotype Corsiva, MS Gothic, MS PGothic, MS Reference Sans Serif, MS Reference Specialty, MS UI Gothic, MT Extra, MV Boli, Myanmar Text, NFS font, Nirmala UI, Nirmala UI Semilight, Nitw P1, NSimSun, Open Sans, Palatino Linotype, Poppins, Poppins ExtraBold, Segoe MDL2 Assets, Segoe Print, Segoe Script, Segoe UI, Segoe UI Black, Segoe UI Emoji, Segoe UI Historic, Segoe UI Light, Segoe UI Semibold, Segoe UI Semilight, Segoe UI Symbol, SimSun, Sitka Banner, Sitka Display, Sitka Heading, Sitka Small, Sitka Subheading, Sitka Text, Sylfaen, Symbol, Syncopate, Tahoma, Times New Roman, Trebuchet MS, Unispace, Verdana, Webdings, Wingdings, Wingdings 2, Wingdings 3, Yu Gothic Medium, Yu Gothic UI, ZWAdobeF
-Underline: None, Ordinary line, Double line, Bold line, Dotted line, Bold dotted line, Dashed line, Bold dashed line, Long stroke line, Bold long stroke line, Dash-dotted line, Bold dash-dotted line, Dashed-dotted line with two dots, Bold dashed-dotted line with two, Wavy line, Bold wavy line, Double wavy line
-Style: Regular, Italics, Bold, Bold Italics
-Вouble strikethrough: Y, N
 Align character height: Y, N
+Вouble strikethrough: Y, N
+Color: #C00000, #F00000, #FFC000, #FF0000, #90D050, #00B050, #00B0F0, #0070C0, #002060, #7030A0
+ColorUnderline: None, #90D050, #00B050, #00B0F0, #0070C0, #002060, #7030A0, #FFC000, #FF0000, #C00000
+Font: Albertus, Aldus, Alexandria, Amiri, Archer, Arno, Afrile Script Font, Beautiful Friends Font, Bromello Typeface, Brushgyo Typeface, Leviafan Script Font, Marchy Script Font, Academy Rough, AdverGothic Rough, Bernhard Rough, Compakt Rough, Compakt Wind, Courier Rough, Guenter, Hermes Rough, Mistica, Nazhdak, Ottisk, Wind, 
 Lowercase: Y, N
+Shift: 0, 10, 50, 100, 12.97, 14.03
+Size: 1, 10, 10.2, 999
 Strikethrough: Y, N
+Style: Regular, Italics, Bold, Bold Italics
 Subscript: Y, N
 Superscript: Y, N
+Underline: None, Ordinary line, Double line, Bold line, Dotted line, Bold dotted line, Dashed line, Bold dashed line, Long stroke line, Bold long stroke line, Dash-dotted line, Bold dash-dotted line, Dashed-dotted line with two dots, Bold dashed-dotted line with two, Wavy line, Bold wavy line, Double wavy line
 Uppercase: Y, N
+
+IF [Underline] = "None" THEN [ColorUnderline] = "None";
+IF [Superscript] = "N" THEN [Shift] = 0;
