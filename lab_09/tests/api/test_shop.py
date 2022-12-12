@@ -64,8 +64,6 @@ class TestShop(unittest.TestCase):
 
 	@classmethod
 	def test_get_all_products(cls):
-		# response = requests.get(ShopApiRouter.GET_ALL_PRODUCTS_URL)
-		# body = response.json()
 		cls.assertEqual(1, 1)
 
 
