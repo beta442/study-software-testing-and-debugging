@@ -1,0 +1,27 @@
+STATUS_CODE_OK = 200
+
+class ShopApiRouter:
+	"""
+	Provides urls for interacting with shop's API
+	"""
+
+	BASE_URL = 'http://shop.qatl.ru/'
+
+	_API_PRODUCT_ADD_KEY_METHOD = 'add'
+	_API_PRODUCT_DELETE_KEY_METHOD = 'delete'
+	_API_PRODUCT_EDIT_KEY_METHOD = 'edit'
+	_API_PRODUCT_GET_ALL_KEY_METHOD = 'get_all'
+
+	_API_PRODUCT_BRANCHES = {
+		_API_PRODUCT_ADD_KEY_METHOD: '',
+		_API_PRODUCT_DELETE_KEY_METHOD: 'api/deleteproduct',
+		_API_PRODUCT_EDIT_KEY_METHOD: '',
+		_API_PRODUCT_GET_ALL_KEY_METHOD: 'api/products',
+	}
+
+	GET_ALL_PRODUCTS_URL = BASE_URL + _API_PRODUCT_BRANCHES[_API_PRODUCT_GET_ALL_KEY_METHOD]
+	DELETE_PRODUCT_URL = BASE_URL + _API_PRODUCT_BRANCHES[_API_PRODUCT_DELETE_KEY_METHOD]
+
+	# @staticmethod
+	# def get_all_url():
+	# 	return GET_ALL_PRODUCTS
