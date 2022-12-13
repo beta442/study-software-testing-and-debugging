@@ -4,8 +4,8 @@ Color: #C00000, #F00000, #FFC000, #FF0000, #90D050, #00B050, #00B0F0, #0070C0, #
 ColorUnderline: None, #90D050, #00B050, #00B0F0, #0070C0, #002060, #7030A0, #FFC000, #FF0000, #C00000
 Font: Albertus, Aldus, Alexandria, Academy Rough, Compakt Wind, Ottisk, Wind, 
 Lowercase: Y, N
-Shift: 0, 10, 50, 100, 12.97, 14.03
-Size: 1, 10, 10.2, 999
+Shift: -100, 10, 50, 100, 12.97, -14.03
+Size: 1, 10, 10.2, 4000
 Strikethrough: Y, N
 Style: Regular, Italics, Bold, Bold Italics
 Subscript: Y, N
