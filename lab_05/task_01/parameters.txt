@@ -10,7 +10,7 @@ Strikethrough: Y, N
 Style: Regular, Italics, Bold, Bold Italics
 Subscript: Y, N
 Superscript: Y, N
-Underline: None, Ordinary line, Double line, Bold line, Dotted line, Bold dotted line, Dashed line, Bold dashed line, Long stroke line, Bold long stroke line, Dash-dotted line, Bold dash-dotted line, Dashed-dotted line with two dots, Bold dashed-dotted line with two, Wavy line, Bold wavy line, Double wavy line
+Underline: None, Ordinary line, Dotted line, Bold line, Bold dotted line
 Uppercase: Y, N
 
 IF [Underline] = "None" THEN [ColorUnderline] = "None";
