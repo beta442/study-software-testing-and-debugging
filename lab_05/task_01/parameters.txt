@@ -14,7 +14,10 @@ Underline: None, Ordinary line, Dotted line, Bold line, Bold dotted line
 Uppercase: Y, N
 
 IF [Underline] = "None" THEN [ColorUnderline] = "None";
-IF [Subscript] = 'Y' THEN [Superscript] = 'N';
-IF [Superscript] = 'Y' THEN [Subscript] = 'N';
-IF [Shift] > 0 THEN [Superscript] = 'Y';
-IF [Shift] < 0 THEN [Subscript] = 'Y';
+IF [Subscript] = "Y" THEN [Superscript] = "N";
+IF [Superscript] = "Y" THEN [Subscript] = "N";
+IF [Shift] > 0 THEN [Superscript] = "Y";
+IF [Shift] < 0 THEN [Subscript] = "Y";
+IF [Shift] = 0 THEN [Superscript] = "N";
+IF [Shift] = 0 THEN [Subscript] = "N";
+
