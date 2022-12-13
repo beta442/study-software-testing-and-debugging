@@ -2,9 +2,9 @@ Align character height: Y, N
 Вouble strikethrough: Y, N
 Color: #C00000, #F00000, #FFC000, #FF0000, #90D050, #00B050, #00B0F0, #0070C0, #002060, #7030A0
 ColorUnderline: None, #90D050, #00B050, #00B0F0, #0070C0, #002060, #7030A0, #FFC000, #FF0000, #C00000
-Font: Albertus, Aldus, Alexandria, Academy Rough, Compakt Wind, Ottisk, Wind, 
+Font: Albertus, Aldus, Aristotel, Academy Rough, Ottisk
 Lowercase: Y, N
-Shift: -100, 10, 50, 100, 12.97, -14.03
+Shift: -100, 0, 10, 50, 100, 12.97, -14.03
 Size: 1, 10, 10.2, 4000
 Strikethrough: Y, N
 Style: Regular, Italics, Bold, Bold Italics
@@ -14,4 +14,6 @@ Underline: None, Ordinary line, Dotted line, Bold line, Bold dotted line
 Uppercase: Y, N
 
 IF [Underline] = "None" THEN [ColorUnderline] = "None";
-IF [Superscript] = "N" THEN [Shift] = 0;
+IF [Subscript] = 'Y' THEN [Superscript] = 'N';
+IF [Shift] > 0 THEN [Superscript] = 'Y';
+IF [Shift] < 0 THEN [Subscript] = 'Y';
