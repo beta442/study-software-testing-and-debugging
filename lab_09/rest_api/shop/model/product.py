@@ -1,11 +1,13 @@
-from pydantic import BaseModel, Field
 from typing import Optional
+from pydantic import BaseModel, Field
+
+from rest_api.shop.model.base_product import ModelBaseProduct
 
 
 PRODUCT_ALIAS_POSTFIX = '-0'
 
 
-class ModelProduct(BaseModel):
+class ModelProduct(ModelBaseProduct):
 	"""
 	Product Model
 	Defines the attributes of a product
@@ -13,27 +15,23 @@ class ModelProduct(BaseModel):
 
 	alias: str = Field(description="""
 		                   Product''s alias.
-		                   Equal to title{}. {} is _*, where * is digit, if alias exists or empty if not
-		                   """,
-	                   regex='.*(-0)*')
+		                   Equal to title{}. {} is (-0)*, if alias exists
+		                   """)
 	cat: str = Field(description='The catalog title where the product is located',
 	                 min_length=1)
-	category_id: int = Field(description='Product''s category id',
-	                         ge=1,
-	                         le=15)
-	content: Optional[str] = Field(description='Product''s content')
-	description: Optional[str] = Field(description='Product''s description')
-	hit: int = Field(description='I don''t give a fuck',
+	hit: int = Field(description='Product''s hit status',
 	                 ge=0)
 	id: int = Field(description='Product''s id',
 	                ge=0)
 	img: str = Field(description='Product''s image url',
 	                 min_length=0)
+	status: int = Field(description='Is product 0 or 1',
+	                    ge=0,
+	                    le=1)
+
+	content: Optional[str] = Field(description='Product''s content')
+	description: Optional[str] = Field(description='Product''s description')
 	keywords: Optional[str] = Field(description='Products''s keywords')
-	old_price: float = Field(description='Product''s old price', ge=0)
-	price: float = Field(description='Product''s actual price', ge=0)
-	status: str = Field(description='Is product 0 or 1', regex='0|1')
-	title: str = Field(description='Product''s title')
 
 
 class ModelProductList(BaseModel):

@@ -4,17 +4,17 @@ from sys import stderr
 
 from rest_api.common import STATUS_CODE_OK
 
-from rest_api.shop.body.addProduct import ModelAddProductBody
-from rest_api.shop.body.editProduct import ModelEditProductBody
+from rest_api.shop.body.add_product import ModelAddProductBody
+from rest_api.shop.body.edit_product import ModelEditProductBody
 
 from rest_api.shop.common import ShopApiRouter, PK_ID
 from rest_api.shop.model.product import \
 	ModelProduct as product_model, \
 	ModelProductList as product_list_model
 
-from rest_api.shop.response.addProduct import ModelAddProductResponse
-from rest_api.shop.response.removeProduct import ModelRemoveProductResponse
-from rest_api.shop.response.editProduct import ModelEditProductResponse
+from rest_api.shop.response.add_product import ModelAddProductResponse
+from rest_api.shop.response.remove_product import ModelRemoveProductResponse
+from rest_api.shop.response.edit_product import ModelEditProductResponse
 
 
 class ShopApi:
@@ -74,7 +74,7 @@ class ShopApi:
 		                                json=product)
 		if response.status_code != STATUS_CODE_OK:
 			raise RuntimeError(f'Failed to edit product. Response code is {response.status_code}')
-		return ModelEditProductBody.parse_obj(response.json())
+		return ModelEditProductResponse.parse_obj(response.json())
 
 
 __all__ = [

@@ -1,0 +1,30 @@
+{
+  "smallestEdit": {
+    "id": 1,
+    "category_id": 2,
+    "title": "Not deletable",
+    "content": "Some content",
+    "price": "123.45",
+    "old_price": "678.90"
+  },
+  "fullEdit": {
+    "id": 1,
+    "category_id": 14,
+    "title": "Not deletable",
+    "content": "asdsadsaddad",
+    "price": "300",
+    "old_price": "360.99",
+    "keywords": "SHIT",
+    "description": "12345",
+    "hit": "1",
+    "status": "1"
+  },
+  "notExisting": {
+    "id": 0,
+    "category_id": 2,
+    "title": "Not deletable",
+    "content": "Some content",
+    "price": "123.45",
+    "old_price": "678.90"
+  }
+}
