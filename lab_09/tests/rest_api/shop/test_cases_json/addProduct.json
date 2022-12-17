@@ -1,0 +1,36 @@
+{
+  "valid": {
+        "category_id": "2",
+        "title": "NewValidItemTitle",
+        "content": "ContentContent",
+        "price": "305",
+        "old_price": "301",
+        "status": "0",
+        "keywords": "SomethingNew",
+        "description": "DescriptionNew",
+        "hit": "1"
+    },
+    "validWithNotExistingId": {
+        "id": "77779",
+        "category_id": "2",
+        "title": "NewwwItemTitle",
+        "content": "ContentContent",
+        "price": "305",
+        "old_price": "307",
+        "status": "0",
+        "keywords": "SomethingNew",
+        "description": "DescriptionNew",
+        "hit": "1"
+    },
+    "validWithoutId": {
+        "category_id": "2",
+        "title": "NewwwwItemTitleWithoutId",
+        "content": "ContentContent",
+        "price": "305",
+        "old_price": "307",
+        "status": "0",
+        "keywords": "SomethingNew",
+        "description": "DescriptionNew",
+        "hit": "1"
+    }
+}

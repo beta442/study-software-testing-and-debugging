@@ -1,6 +1,5 @@
+from pydantic import BaseModel, Field
 from typing import Optional
-
-from pydantic import BaseModel, Field, ValidationError
 
 
 class ModelProduct(BaseModel):
@@ -33,6 +32,7 @@ class ModelProduct(BaseModel):
 	status: str = Field(description='Is product 0 or 1', regex='0|1')
 	title: str = Field(description='Product''s title', min_length=1)
 
-	@staticmethod
-	def get_id_key():
-		return 'id'
+
+class ModelProductList(BaseModel):
+	__root__: list[ModelProduct]
+
