@@ -37,30 +37,30 @@ class ShopRestApiTest(unittest.TestCase):
 
 	def _delete_existing_products(self) -> None:
 		for item in self.__products_ids:
-			print(f'Deleteing product with id "{item}"')
+			print(f'Deleting product with id "{item}"')
 			response = ShopApi.delete_product(item)
 			if response.status != self.VALID_STATUS:
 				print(f'Failed to delete product with {item}. Status is {response.status}')
 		self.__products_ids.clear()
 
-	# @parameterized.expand([
-	# 	TC_ADD_PRODUCT_VALID_ALMOST_EMPTY_SCHEMA_KEY,
-	# 	TC_ADD_PRODUCT_VALID_KEY,
-	# 	TC_ADD_PRODUCT_VALID_WITH_NOT_EXISTING_ID_KEY,
-	# 	TC_ADD_PRODUCT_VALID_WITHOUT_ID_KEY
-	# ])
-	# def test_add_valid_products(self, test_key):
-	# 	product = TC_ADD_PRODUCT_VALID_JSON[test_key]
-	# 	response = ShopApi.add_product(product).dict()
-	# 	self.__products_ids.append(response[PK_ID])
-	# 	print(f'Added product with {response[PK_ID]} id')
-	#
-	# 	self.assertEqual(response[RK_STATUS],
-	# 	                 self.VALID_STATUS,
-	# 	                 f"""
-	# 					 Test case for: {test_key} product\n
-	# 					 Expected {self.VALID_STATUS} value at repsonse's {RK_STATUS} member while adding product\n
-	# 					 """)
+	@parameterized.expand([
+		TC_ADD_PRODUCT_VALID_ALMOST_EMPTY_SCHEMA_KEY,
+		TC_ADD_PRODUCT_VALID_KEY,
+		TC_ADD_PRODUCT_VALID_WITH_NOT_EXISTING_ID_KEY,
+		TC_ADD_PRODUCT_VALID_WITHOUT_ID_KEY
+	])
+	def test_add_valid_products(self, test_key):
+		product = TC_ADD_PRODUCT_VALID_JSON[test_key]
+		response = ShopApi.add_product(product).dict()
+		self.__products_ids.append(response[PK_ID])
+		print(f'Added product with {response[PK_ID]} id')
+
+		self.assertEqual(response[RK_STATUS],
+		                 self.VALID_STATUS,
+		                 f"""
+						 Test case for: {test_key} product\n
+						 Expected {self.VALID_STATUS} value at repsonse's {RK_STATUS} member while adding product\n
+						 """)
 
 	@parameterized.expand([
 		(TC_ADD_PRODUCT_VALID_PRODUCT_TITLE_COLLISION_KEY, PRODUCT_ALIAS_POSTFIX * 0),
@@ -77,6 +77,7 @@ class ShopRestApiTest(unittest.TestCase):
 		product = TC_ADD_PRODUCT_VALID_ALIAS_JSON[test_key]
 		response = ShopApi.add_product(product).dict()
 		self.__products_ids.append(response[PK_ID])
+		print(f'Added product with {response[PK_ID]} id')
 		added_product = ShopApi.get_product(response[PK_ID])
 
 		self.assertEqual(response[RK_STATUS],

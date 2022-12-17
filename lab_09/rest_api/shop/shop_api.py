@@ -3,6 +3,7 @@ from typing import Optional
 from sys import stderr
 
 from rest_api.common import STATUS_CODE_OK
+from rest_api.shop.body.addProduct import ModelAddProductBody
 from rest_api.shop.common import ShopApiRouter, PK_ID
 from rest_api.shop.model.product import \
 	ModelProduct as product_model, \
@@ -49,6 +50,7 @@ class ShopApi:
 
 	@staticmethod
 	def add_product(product: dict) -> ModelAddProductResponse:
+		ModelAddProductBody.parse_obj(product)
 		response = ShopApi.make_request(requests.post,
 		                                ShopApiRouter.ADD_PRODUCT_URL,
 		                                json=product)
