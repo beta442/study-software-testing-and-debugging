@@ -3,7 +3,10 @@ from typing import Optional
 from sys import stderr
 
 from rest_api.common import STATUS_CODE_OK
+
 from rest_api.shop.body.addProduct import ModelAddProductBody
+from rest_api.shop.body.editProduct import ModelEditProductBody
+
 from rest_api.shop.common import ShopApiRouter, PK_ID
 from rest_api.shop.model.product import \
 	ModelProduct as product_model, \
@@ -11,6 +14,7 @@ from rest_api.shop.model.product import \
 
 from rest_api.shop.response.addProduct import ModelAddProductResponse
 from rest_api.shop.response.removeProduct import ModelRemoveProductResponse
+from rest_api.shop.response.editProduct import ModelEditProductResponse
 
 
 class ShopApi:
@@ -59,5 +63,20 @@ class ShopApi:
 		                                ShopApiRouter.ADD_PRODUCT_URL,
 		                                json=product)
 		if response.status_code != STATUS_CODE_OK:
-			raise Exception(f'Failed to add product. Response code is {response.status_code}')
+			raise RuntimeError(f'Failed to add product. Response code is {response.status_code}')
 		return ModelAddProductResponse.parse_obj(response.json())
+
+	@staticmethod
+	def edit_product(product: dict) -> ModelEditProductResponse:
+		ModelEditProductBody.parse_obj(product)
+		response = ShopApi.make_request(requests.post,
+		                                ShopApiRouter.EDIT_PRODUCT_URL,
+		                                json=product)
+		if response.status_code != STATUS_CODE_OK:
+			raise RuntimeError(f'Failed to edit product. Response code is {response.status_code}')
+		return ModelEditProductBody.parse_obj(response.json())
+
+
+__all__ = [
+	'ShopApi'
+]

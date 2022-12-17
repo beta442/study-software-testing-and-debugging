@@ -1,10 +1,15 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from rest_api.shop.response.base import ModelBaseResponse
 
 
-class ModelAddProductResponse(BaseModel):
+class ModelAddProductResponse(ModelBaseResponse):
 	"""
 	Add product response schema
 	"""
-
 	id: int = Field(description='Product''s id', gt=0)
-	status: int = Field(description='Execution status', ge=0, le=1)
+
+
+__all__ = [
+	'ModelAddProductResponse'
+]

@@ -64,7 +64,7 @@ class ShopRestApiTest(unittest.TestCase):
 		product = TC_ADD_PRODUCT_VALID_JSON[test_key]
 		response = ShopApi.add_product(product).dict()
 		self._products_ids.append(response[PK_ID])
-		print(f'Added product with {response[PK_ID]} id')
+		print(f'Add product with {response[PK_ID]} id')
 
 		self.assertEqual(response[RK_STATUS],
 		                 self.VALID_STATUS,
@@ -77,18 +77,16 @@ class ShopRestApiTest(unittest.TestCase):
 		(TC_ADD_PRODUCT_VALID_PRODUCT_TITLE_COLLISION_KEY, PRODUCT_ALIAS_POSTFIX * 0),
 		(TC_ADD_PRODUCT_VALID_PRODUCT_TITLE_COLLISION_KEY, PRODUCT_ALIAS_POSTFIX * 1),
 		(TC_ADD_PRODUCT_VALID_PRODUCT_TITLE_COLLISION_KEY, PRODUCT_ALIAS_POSTFIX * 2),
-		(TC_ADD_PRODUCT_VALID_PRODUCT_TITLE_COLLISION_KEY, PRODUCT_ALIAS_POSTFIX * 3),
 
 		(TC_ADD_PRODUCT_VALID_PRODUCT_EMPTY_TITLE_COLLISION_KEY, '' + PRODUCT_ALIAS_POSTFIX * 0),
 		(TC_ADD_PRODUCT_VALID_PRODUCT_EMPTY_TITLE_COLLISION_KEY, '0' + PRODUCT_ALIAS_POSTFIX * 1),
 		(TC_ADD_PRODUCT_VALID_PRODUCT_EMPTY_TITLE_COLLISION_KEY, '0' + PRODUCT_ALIAS_POSTFIX * 2),
-		(TC_ADD_PRODUCT_VALID_PRODUCT_EMPTY_TITLE_COLLISION_KEY, '0' + PRODUCT_ALIAS_POSTFIX * 3),
 	])
 	def test_alias_product(self, test_key, expected_postfix):
 		product = TC_ADD_PRODUCT_VALID_ALIAS_JSON[test_key]
 		response = ShopApi.add_product(product).dict()
 		self._products_ids.append(response[PK_ID])
-		print(f'Added product with {response[PK_ID]} id')
+		print(f'Add product with {response[PK_ID]} id')
 		added_product = ShopApi.get_product(response[PK_ID])
 
 		self.assertEqual(response[RK_STATUS],
@@ -118,7 +116,7 @@ class ShopRestApiTest(unittest.TestCase):
 		self.assertEqual(response.status,
 		                 self.INVALID_STATUS,
 		                 f"""
-		                 Expected {self.INVALID_STATUS} status in response while deleting product with {not_valid_product_id} id 
+		                 Expected {self.INVALID_STATUS} status in response while deleting product with {not_valid_product_id} id
 		                 """)
 
 	def test_delete_product(self):
