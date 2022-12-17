@@ -24,13 +24,9 @@ class ShopApi:
 
 	@staticmethod
 	def get_product(product_id) -> Optional[product_model]:
-		products = ShopApi.get_products()
+		products = ShopApi.get_products().__root__
 
-		for product in products:
-			if product[PK_ID] == product_id:
-				return product_model.parse_obj(product)
-
-		return None
+		return next((product for product in products if product.id == product_id), None)
 
 	@staticmethod
 	def make_request(request: requests.request,

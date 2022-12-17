@@ -1,36 +1,58 @@
 {
   "valid": {
-        "category_id": "2",
-        "title": "NewValidItemTitle",
-        "content": "ContentContent",
-        "price": "305",
-        "old_price": "301",
-        "status": "0",
-        "keywords": "SomethingNew",
-        "description": "DescriptionNew",
-        "hit": "1"
+    "valid": {
+      "category_id": "2",
+      "title": "NewValidItemTitle",
+      "content": "ContentContent",
+      "price": "305",
+      "old_price": "301",
+      "status": "0",
+      "keywords": "SomethingNew",
+      "description": "DescriptionNew",
+      "hit": "1"
     },
-    "validWithNotExistingId": {
-        "id": "77779",
-        "category_id": "2",
-        "title": "NewwwItemTitle",
-        "content": "ContentContent",
-        "price": "305",
-        "old_price": "307",
-        "status": "0",
-        "keywords": "SomethingNew",
-        "description": "DescriptionNew",
-        "hit": "1"
+    "withNotExistingId": {
+      "id": "77779",
+      "category_id": "2",
+      "title": "NeItemTitle",
+      "content": "ContentContent",
+      "price": "305",
+      "old_price": "307",
+      "status": "0",
+      "keywords": "SomethingNew",
+      "description": "DescriptionNew",
+      "hit": "1"
     },
-    "validWithoutId": {
-        "category_id": "2",
-        "title": "NewwwwItemTitleWithoutId",
-        "content": "ContentContent",
-        "price": "305",
-        "old_price": "307",
-        "status": "0",
-        "keywords": "SomethingNew",
-        "description": "DescriptionNew",
-        "hit": "1"
+    "withoutId": {
+      "category_id": "2",
+      "title": "NewItemTitleWithoutId",
+      "content": "ContentContent",
+      "price": "305",
+      "old_price": "307",
+      "status": "0",
+      "keywords": "SomethingNew",
+      "description": "DescriptionNew",
+      "hit": "1"
+    },
+    "almostEmptySchema": {
+      "category_id": 2,
+      "title": "",
+      "price": "300",
+      "old_price": "300"
     }
+  },
+  "alias": {
+    "productTitleCollision": {
+      "category_id": 2,
+      "title": "AliasTesting",
+      "price": "305",
+      "old_price": "301"
+    },
+    "productEmptyTitleCollision": {
+      "category_id": 2,
+      "title": "",
+      "price": "305",
+      "old_price": "301"
+    }
+  }
 }

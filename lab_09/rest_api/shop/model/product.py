@@ -2,6 +2,9 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 
+PRODUCT_ALIAS_POSTFIX = '-0'
+
+
 class ModelProduct(BaseModel):
 	"""
 	Product Model
@@ -12,7 +15,7 @@ class ModelProduct(BaseModel):
 		                   Product''s alias.
 		                   Equal to title{}. {} is _*, where * is digit, if alias exists or empty if not
 		                   """,
-	                   min_length=1)
+	                   regex='.*(-0)*')
 	cat: str = Field(description='The catalog title where the product is located',
 	                 min_length=1)
 	category_id: int = Field(description='Product''s category id',
@@ -30,9 +33,16 @@ class ModelProduct(BaseModel):
 	old_price: float = Field(description='Product''s old price', ge=0)
 	price: float = Field(description='Product''s actual price', ge=0)
 	status: str = Field(description='Is product 0 or 1', regex='0|1')
-	title: str = Field(description='Product''s title', min_length=1)
+	title: str = Field(description='Product''s title')
 
 
 class ModelProductList(BaseModel):
 	__root__: list[ModelProduct]
 
+
+__all__ = [
+	'PRODUCT_ALIAS_POSTFIX',
+
+	'ModelProduct',
+	'ModelProductList'
+]
