@@ -24,6 +24,10 @@ class ShopApi:
 		return product_list_model.parse_obj(response.json())
 
 	@staticmethod
+	def get_product_count() -> int:
+		return len(ShopApi.get_products().__root__)
+
+	@staticmethod
 	def get_product(product_id) -> Optional[product_model]:
 		products = ShopApi.get_products().__root__
 
