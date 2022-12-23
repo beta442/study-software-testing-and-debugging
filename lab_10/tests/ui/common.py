@@ -1,0 +1,1 @@
+WEB_DRIVER_ARG_HEADLESS = '--headless'
