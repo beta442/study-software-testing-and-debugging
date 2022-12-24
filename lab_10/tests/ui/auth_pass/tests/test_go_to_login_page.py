@@ -84,7 +84,7 @@ class TestCaseGoToLoginPage(TestCase):
 		self.assertIsNot(login_button,
 		                 None,
 		                 """
-		                 Expected to find
+		                 Expected to find login button inside account's dropdown menu
 		                 """)
 
 	def test_login_button_displayed_after_click_on_account_button(self):
