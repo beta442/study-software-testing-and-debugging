@@ -63,6 +63,15 @@ class AuthMethods(BaseWebDriverMethods):
 		except Exception:
 			return None
 
+	def submit_user_login_and_password(self, login, password):
+		login_field = self.get_login_field()
+		password_field = self.get_password_field()
+		submit_bt = self.get_submit_button()
+
+		login_field.send_keys(login)
+		password_field.send_keys(password)
+		submit_bt.click()
+
 __all__ = [
 	'AuthMethods'
 ]

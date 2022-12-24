@@ -84,18 +84,13 @@ class TestCaseAuth(TestCase):
 		'LOGIN',
 		'PASSWORD'
 	])
-	def test_danger_login_input(self, input_field_type):
+	def test_login_danger_data_in_input(self, input_field_type):
 		is_type_login = (input_field_type == 'LOGIN')
-		input_field = self.__login_field\
-			if is_type_login\
-			else self.__password_field
 		input_form_group = self.__login_field_form_group\
 			if is_type_login\
 			else self.__password_field_form_group
 
-		# Focus and unfocus for emtpy input
-		input_field.click()
-		self.__submit_button.click()
+		self.__webdriver_methods.submit_user_login_and_password(login='', password='')
 
 		class_lfg = input_form_group.get_attribute('class')
 
@@ -148,13 +143,9 @@ class TestCaseAuth(TestCase):
 	])
 	def test_login(self, json_config_key):
 		login_and_password_json_obj = TC_AUTHORIZE_JSON[json_config_key]
-		login_field = self.__login_field
-		password_field = self.__password_field
-		submit_btn = self.__submit_button
 
-		login_field.send_keys(login_and_password_json_obj[F_LOGIN_KEY])
-		password_field.send_keys(login_and_password_json_obj[F_PASSWORD_KEY])
-		submit_btn.click()
+		self.__webdriver_methods.submit_user_login_and_password(login=login_and_password_json_obj[F_LOGIN_KEY],
+		                                                        password=login_and_password_json_obj[F_PASSWORD_KEY])
 		success_msg = self.__webdriver_methods.get_success_div()
 		success = json_config_key in [
 			TC_AUTHORIZE_SUCCESS_JSON_KEY
