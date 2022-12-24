@@ -1,0 +1,10 @@
+{
+  "success": {
+    "login": "login",
+    "password": "password"
+  },
+  "failure": {
+    "login": "!@#$%^&*()_+|~`!_login_!`~!@#$%^&*()_+|",
+    "password": "!@#$%^&*()_+|password!@#$%^&*()_+|"
+  }
+}

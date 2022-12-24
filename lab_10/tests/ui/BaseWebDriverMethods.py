@@ -1,6 +1,6 @@
 from typing import Type
 
-from tests.webdriver.webdriver import\
+from tests.webdriver.WebDriver import\
 	Chrome,\
 	\
 	BaseOptions,\
@@ -11,8 +11,16 @@ from tests.webdriver.webdriver import\
 class BaseWebDriverMethods:
 	_driver = None
 
-	def __init__(self, remote_web_driver: Type[RemoteWebDriver] = Chrome, options: BaseOptions = None):
-		self._driver = WebDriver(remote_web_driver, options)
+	def __init__(self,
+	             remote_web_driver: Type[RemoteWebDriver] = Chrome,
+	             options: BaseOptions = None,
+	             maximize_window_on_init: bool = True):
+		self._driver = WebDriver(remote_web_driver=remote_web_driver,
+		                         options=options,
+		                         maximize_window_on_init=maximize_window_on_init)
+
+	def get(self, url: str):
+		self._driver.get(url)
 
 
 __all__ = [
