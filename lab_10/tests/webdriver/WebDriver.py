@@ -47,6 +47,9 @@ class WebDriver:
 	def find_elements(self, by: str = By.ID, value: Optional[str] = None) -> list[WebElement]:
 		return self._driver.find_elements(by, value)
 
+	def implicitly_wait(self, time_to_wait: float) -> None:
+		self._driver.implicitly_wait(time_to_wait)
+
 
 __all__ = [
 	'BaseOptions',

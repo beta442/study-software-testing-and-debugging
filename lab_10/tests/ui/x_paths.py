@@ -28,3 +28,21 @@ XPATH_AUTH_ACCOUNT_BUTTON = R_XPATH_AUTH_BTN_GROUP + '/a[@class = "dropdown-togg
 XPATH_AUTH_ACCOUNT_DROPDOWN_MENU = R_XPATH_AUTH_BTN_GROUP + '/ul[@class = "dropdown-menu"]'
 XPATH_AUTH_LOGIN_IN_ACCOUNT_DROPDOWN_MENU =\
 	XPATH_AUTH_ACCOUNT_DROPDOWN_MENU + R_XPATH_AUTH_LOGIN_IN_ACCOUNT_DROPDOWN_MENU
+
+# PRODUCT CART
+
+R_XPATH_MODAL_CONTENT = '//div[@class = "modal-content"]'
+R_XPATH_MODAL_BODY = '//div[@class = "modal-body"]'
+
+R_XPATH_CART_SHOW_BTN = '//a[@href = "cart/show"]'
+
+R_XPATH_CART_CLOSE_BTN = f'{R_XPATH_MODAL_CONTENT}//button[@type = "button" and @class = "close"]'
+R_XPATH_CART_CLEAR_BTN = f'{R_XPATH_MODAL_CONTENT}//button[@onClick = "clearCart()"]'
+R_XPATH_CART_TOTAL_PRICE = f'{R_XPATH_MODAL_CONTENT}//td[contains(@class, "cart-sum")]'
+R_XPATH_CART_PRODUCT_DELETE_SPAN = f'{R_XPATH_MODAL_CONTENT}//span[contains(@class, "del-item")]'
+R_XPATH_TABLE_ROW_IN_CART = f'{R_XPATH_MODAL_CONTENT}{R_XPATH_MODAL_BODY}//tr'
+
+R_XPATH_ADD_TO_CART = '//a[@href = "cart/add?id={item_id}" or @class = "add-to-cart-link"]'
+R_XPATH_PRODUCT_PRICE = '//span[contains(@class, "item_price")]'
+
+R_XPATH_PRODUCT_TITLE = '//div[@class = "product-bottom"]//a'
