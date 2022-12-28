@@ -56,6 +56,42 @@ class TestCaseAddProductToCart(TestCase):
 		                 Go: {actual_titles}
 		                 """)
 
+	def test_add_single_product(self):
+		self.__webdriver_methods.go_to_single_product_page()
+		expected_product_title = self.__webdriver_methods.get_single_product_title()
+		expected_product_price = self.__webdriver_methods.get_single_product_price()
+		expected_product_id = self.__webdriver_methods.get_single_product_id()
+		expected_quantity_input_field = 100
+		self.__webdriver_methods.set_single_product_quantity(expected_quantity_input_field)
+
+		self.__webdriver_methods.press_add_single_product()
+
+		actual_product_ids_in_cart = self.__webdriver_methods.get_actual_product_ids_in_cart()
+		actual_product_titles_in_cart = self.__webdriver_methods.get_actual_product_titles_in_cart()
+		actual_product_costs_int_cart = self.__webdriver_methods.get_actual_product_costs_in_cart()
+
+		self.assertIn(expected_product_title.lower(),
+		              [title.lower() for title in actual_product_titles_in_cart],
+		              f"""
+		              Expected to find single product's title in cart
+		              Expected title: {expected_product_title.lower()}
+		              Got: {actual_product_titles_in_cart}
+		              """)
+		self.assertIn(expected_product_id,
+		              actual_product_ids_in_cart,
+		              f"""
+		              Expected to find single product's id in cart
+		              Expected id: {expected_product_id}
+		              Got: {actual_product_ids_in_cart} 
+		              """)
+		self.assertIn(expected_product_price,
+		              actual_product_costs_int_cart,
+		              f"""
+		              Expected to find single product's cost in cart
+		              Expected price: {expected_product_price}
+		              Got: {actual_product_costs_int_cart}
+		              """)
+
 
 __all__ = [
 	'TestCaseAddProductToCart'

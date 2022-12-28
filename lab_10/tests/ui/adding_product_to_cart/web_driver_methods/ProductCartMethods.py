@@ -7,6 +7,8 @@ from tests.webdriver.WebDriver import By, ChromeOptions, WebElement
 
 from tests.ui.x_paths import *
 
+from tests.ui.adding_product_to_cart.configs.loader import *
+
 
 class ProductCartMethods(BaseWebDriverMethods):
 	"""
@@ -14,7 +16,8 @@ class ProductCartMethods(BaseWebDriverMethods):
 	"""
 
 	__product_ids: list[int] = list()
-	__cart_product_cost: list[int] = 0
+	__cart_product_cost: list[float] = list()
+	__product_titles: list[str] = list()
 
 	def __init__(self):
 		options = None
@@ -84,9 +87,9 @@ class ProductCartMethods(BaseWebDriverMethods):
 
 	__TRIES_UNTIL_CART_LOAD = 50
 
-	def get_actual_product_costs_in_cart(self) -> list[int]:
+	def get_actual_product_costs_in_cart(self) -> list[float]:
 		try:
-			result: list[int] = []
+			result: list[float] = []
 
 			products = self._get_product_table_rows()
 
@@ -98,7 +101,7 @@ class ProductCartMethods(BaseWebDriverMethods):
 				# for _idx, d in enumerate(table_ds):
 				# 	print(f'{_idx}: {d.text}')
 
-				product_cost = int(table_ds[self.__TABLE_D_PRODUCT_COST_INDEX].text)
+				product_cost = float(table_ds[self.__TABLE_D_PRODUCT_COST_INDEX].text)
 				result.append(product_cost)
 				# print(f'Add {product_cost} of {idx}')
 
@@ -144,18 +147,75 @@ class ProductCartMethods(BaseWebDriverMethods):
 		except Exception:
 			return []
 
+	def go_to_single_product_page(self) -> None:
+		try:
+			self._driver.get(TC_CART_TEST_JSON[TC_ADD_SINGLE_PRODUCT][F_URL_KEY])
+		except:
+			pass
+
+	def get_single_product_title(self) -> str:
+		try:
+			title = self._driver.find_element(By.XPATH, R_XPATH_SHELF_ITEM_PRODUCT_TITLE)
+
+			return title.text
+		except:
+			return ''
+
+	def get_single_product_price(self) -> float:
+		try:
+			price_str = self._driver.find_element(By.XPATH, R_XPATH_SHELF_ITEM_PRODUCT_PRICE).text
+
+			clear_price_str = str()
+			for c in price_str:
+				if c.isdigit() or c in [',', '.']:
+					clear_price_str += c
+
+			return float(clear_price_str)
+		except:
+			return float()
+
+	def get_single_product_id(self) -> int:
+		try:
+			add_product_to_cart_btn = self._driver.find_element(By.XPATH, R_XPATH_SHELF_ITEM_PRODUCT_ADD_TO_CART_BTN)
+			product_id = add_product_to_cart_btn.get_attribute('data-id')
+
+			return int(product_id)
+		except:
+			return int()
+
+	def set_single_product_quantity(self, quantity: int) -> None:
+		try:
+			input_quantity = self._driver.find_element(By.XPATH, R_XPATH_SHELF_ITEM_PRODUCT_QUANTITY_TO_ORDER)
+
+			input_quantity.clear()
+			input_quantity.send_keys(quantity)
+		except:
+			pass
+
+	def press_add_single_product(self) -> None:
+		try:
+			self.__product_ids.append(self.get_single_product_id())
+			self.__product_titles.append(self.get_single_product_title())
+			self.__cart_product_cost.append(self.get_single_product_price())
+
+			add_btn = self._driver.find_element(By.XPATH, R_XPATH_SHELF_ITEM_PRODUCT_ADD_TO_CART_BTN)
+			add_btn.click()
+
+		except:
+			pass
+
 	def get_expected_product_ids_in_cart(self) -> list[int]:
 		return self.__product_ids
 
-	def get_expected_product_costs(self) -> list[int]:
+	def get_expected_product_costs(self) -> list[float]:
 		return self.__cart_product_cost
 
-	def _count_total_price_on_page(self) -> list[int]:
+	def _count_total_price_on_page(self) -> list[float]:
 		product_prices = self._driver.find_elements(By.XPATH, R_XPATH_PRODUCT_PRICE)
 
-		result: list[int] = []
+		result: list[float] = []
 		for price in product_prices:
-			p = int(''.join(x for x in price.text if x.isdigit()))
+			p = float(''.join(x for x in price.text if x.isdigit() or x in [',', '.']))
 			result.append(p)
 
 		return result

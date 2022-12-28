@@ -31,6 +31,8 @@ XPATH_AUTH_LOGIN_IN_ACCOUNT_DROPDOWN_MENU =\
 
 # PRODUCT CART
 
+# SHOP SHOWCASE #
+
 R_XPATH_MODAL_CONTENT = '//div[@class = "modal-content"]'
 R_XPATH_MODAL_BODY = '//div[@class = "modal-body"]'
 
@@ -46,3 +48,16 @@ R_XPATH_ADD_TO_CART = '//a[@href = "cart/add?id={item_id}" or @class = "add-to-c
 R_XPATH_PRODUCT_PRICE = '//span[contains(@class, "item_price")]'
 
 R_XPATH_PRODUCT_TITLE = '//div[@class = "product-bottom"]//a'
+
+# SHOP SHOWCASE #
+
+# SINGLE PRODUCT #
+
+R_XPATH_SIMPLE_CART_SHELF_ITEM = '//div[contains(@class, "simpleCart_shelfItem")]'
+R_XPATH_SHELF_ITEM_PRODUCT_TITLE = f'{R_XPATH_SIMPLE_CART_SHELF_ITEM}//child::h2'
+R_XPATH_SHELF_ITEM_PRODUCT_PRICE = f'{R_XPATH_SIMPLE_CART_SHELF_ITEM}//child::h5'
+R_XPATH_SHELF_ITEM_PRODUCT_QUANTITY_TO_ORDER =\
+	f'{R_XPATH_SIMPLE_CART_SHELF_ITEM}//div[@class = "quantity"]//input'
+R_XPATH_SHELF_ITEM_PRODUCT_ADD_TO_CART_BTN = f'{R_XPATH_SIMPLE_CART_SHELF_ITEM}//a[@id = "productAdd"]'
+
+# SINGLE PRODUCT #
